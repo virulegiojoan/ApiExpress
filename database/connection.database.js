@@ -1,23 +1,18 @@
-import pg from 'pg';
 import 'dotenv/config'
+import pg from 'pg'
 
-const {Pool} = pg
-
+const { Pool } = pg
 
 const connectionString = process.env.DATABASE_URL
 
-export const db = new Pool ({
+export const db = new Pool({
     allowExitOnIdle: true,
     connectionString
-
-
 })
 
 try {
     await db.query('SELECT NOW()')
-    console.log('Connected to the database')
-}
-
-catch (error) {
-    console.error(error)
+    console.log('DATABASE connected')
+} catch (error) {
+    console.log(error)
 }
